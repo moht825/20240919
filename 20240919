@@ -1,0 +1,77 @@
+
+#include <stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+void Addmatrix(int a[][3], int b[][3], int c[][3], int size)
+{
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < 3; j++)
+            c[i][j] = (a[i][j] + b[i][j]);
+}
+
+void printMatrix(int a[][3], int size)
+{
+    for (int i = 0; i < size; i++) 
+    {
+        for (int j = 0; j < 3; j++) 
+        {
+            printf("%5d", a[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void readMatrix(int a[][3], int size)
+{
+    for (int i = 0; i < size; i++) 
+    {
+        for (int j = 0; j < 3; j++) 
+        {
+            scanf_s("%d", &a[i][j]);
+        }
+    }
+}
+
+void scalarMatrix(int a[][3], int b[][3], int size, int number)
+{
+    printf("행렬 a\n\n");
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            
+            printf("%5d", (a[i][j])*number);
+        }
+        printf("\n\n");
+    }
+    printf("행렬 b\n\n");
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+
+            printf("%5d", (b[i][j]) * number);
+        }
+        printf("\n\n");
+    }
+}
+
+int main(void)
+{
+    int A[3][3], B[3][3], C[3][3];
+    int number = 0;
+
+    printf("(3 x 3) 행렬 A 입력 : \n");
+    readMatrix(A, 3);
+    printf("(3 x 3) 행렬 B 입력: \n");
+    readMatrix(B, 3);
+
+    Addmatrix(A, B, C, 3);
+
+    printf("행렬 합:\n"); printMatrix(C, 3);
+    printf("\n");
+
+    printf("곱할 상수를 입력해주세요:\n");
+    scanf_s("%d", &number);
+    printf("스칼라 곱:\n"); scalarMatrix(A, B, 3, number);
+}
